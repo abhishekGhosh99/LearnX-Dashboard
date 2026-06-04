@@ -10,14 +10,12 @@ interface BentoGridProps {
 }
 
 const BentoGrid = ({ courses }: BentoGridProps) => {
-  const res = courses.map((course) => console.log(course));
-  console.log(res);
   return (
     <motion.section
       variants={containerVariants}
       initial="hidden"
       animate="show"
-      className="grid gap-6 grid-cols-1 md:grid-cols-2 xl:grid-cols-4 auto-rows-[220px]"
+      className="grid gap-6 grid-cols-1 md:grid-cols-2 xl:grid-cols-4 auto-rows-[255px]"
     >
       <motion.div variants={itemVariants} className="xl:col-span-2">
         <HeroTile />
