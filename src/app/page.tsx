@@ -1,4 +1,5 @@
 import BentoGrid from "@/components/dashboard/BentoGrid";
+import MobileNav from "@/components/layout/MobileNav";
 import Sidebar from "@/components/layout/Sidebar";
 import { getCourses } from "@/lib/getCourses";
 
@@ -14,6 +15,7 @@ const page = async () => {
         <div className="p-6">
           <BentoGrid courses={courses} />
         </div>
+        <MobileNav />
       </section>
     </main>
   );
