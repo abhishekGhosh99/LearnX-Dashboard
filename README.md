@@ -1,36 +1,82 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Next-Gen Learning Dashboard
 
-## Getting Started
+A futuristic student learning dashboard built with Next.js, Supabase, Tailwind CSS, and Framer Motion.
 
-First, run the development server:
+## Live Demo
 
-```bash
+Vercel Deployment URL: https://learn-x-dashboard.vercel.app/
+
+## Features
+
+- Responsive Bento Grid Layout
+- Server-Side Data Fetching
+- Supabase Database Integration
+- Animated Course Progress Bars
+- Activity Heatmap
+- Framer Motion Stagger Animations
+- Animated Sidebar Navigation
+- Loading Skeletons
+- Error Handling
+- Mobile Navigation
+
+## Tech Stack
+
+- Next.js
+- TypeScript
+- Tailwind CSS
+- Framer Motion
+- Supabase
+- Lucide React
+
+## Architecture Decisions
+
+### Server Components
+
+Course data is fetched using Next.js Server Components to reduce client-side JavaScript and improve performance.
+
+### Client Components
+
+Interactive UI elements such as:
+
+- Sidebar Navigation
+- Progress Bar Animations
+- Course Card Hover Effects
+
+are implemented as Client Components.
+
+### Component Structure
+
+components/
+├── layout/
+├── dashboard/
+└── ui/
+
+This structure keeps the application modular and scalable.
+
+## Challenges Faced
+
+### Supabase Row Level Security
+
+Initially, data was not returned because no RLS policies were configured. A public read policy was added for development.
+
+### Hydration Issues
+
+The activity heatmap initially used Math.random() during rendering, causing hydration mismatches. This was fixed by using deterministic data.
+
+### Responsive Layout
+
+The Bento Grid required different layouts across desktop, tablet, and mobile breakpoints while maintaining consistent spacing and animations.
+
+## Environment Variables
+
+Create a .env.local file using:
+
+NEXT_PUBLIC_SUPABASE_URL=
+
+NEXT_PUBLIC_SUPABASE_ANON_KEY=
+
+## Running Locally
+
+npm install
+
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
