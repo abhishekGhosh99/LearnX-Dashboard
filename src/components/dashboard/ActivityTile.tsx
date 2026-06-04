@@ -1,7 +1,14 @@
+import { useEffect, useState } from "react";
+
 const ActivityTile = () => {
-  const activity = Array.from({ length: 39 }, () =>
-    Math.floor(Math.random() * 6),
-  );
+  const [activity, setActivity] = useState<number[]>([]);
+
+  useEffect(() => {
+    const data = Array.from({ length: 39 }, () =>
+      Math.floor(Math.random() * 6),
+    );
+    setActivity(data);
+  }, []);
 
   return (
     <article className="rounded-3xl bg-zinc-900 p-6">
