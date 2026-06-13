@@ -4,6 +4,7 @@ import { containerVariants, itemVariants } from "./AnimateGrid";
 import CourseCard from "./CourseCard";
 import HeroTile from "./HeroTile";
 import { motion } from "framer-motion";
+import LearningChart from "./LearningChart";
 
 interface BentoGridProps {
   courses: any[];
@@ -23,6 +24,10 @@ const BentoGrid = ({ courses }: BentoGridProps) => {
 
       <motion.div variants={itemVariants} className="xl:col-span-2">
         <ActivityTile />
+      </motion.div>
+
+      <motion.div variants={itemVariants} className="xl:col-span-2">
+        <LearningChart />
       </motion.div>
 
       {courses.map((course) => (
