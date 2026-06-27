@@ -3,6 +3,8 @@
 import { useMemo, useState } from "react";
 import CourseCard from "@/components/dashboard/CourseCard";
 import { Course } from "@/types/course";
+import { motion } from "framer-motion";
+import { Search } from "lucide-react";
 
 interface Props {
   courses: Course[];
@@ -38,17 +40,21 @@ const CoursesView = ({ courses }: Props) => {
   return (
     <>
       <div className="mb-8 flex flex-col gap-4 lg:flex-row">
-        <input
-          type="text"
-          placeholder="Search courses..."
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-          className="rounded-xl border border-zinc-800 bg-zinc-900 px-4 py-3 outline-none"
-        />
+        <div className="relative">
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-zinc-500" />
+
+          <input
+            type="text"
+            placeholder="Search courses..."
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            className="rounded-xl border border-zinc-800 bg-zinc-900 pl-11 pr-4 py-3 outline-none"
+          />
+        </div>
         <select
           value={filter}
           onChange={(e) => setFilter(e.target.value)}
-          className="rounded-xl border border-zinc-800 bg-zinc-900 px-4 py-3"
+          className="rounded-xl border border-zinc-800 bg-zinc-900 pl-4 pr-10 py-3"
         >
           <option value="all">All Courses</option>
           <option value="progress">In Progress</option>
@@ -58,17 +64,35 @@ const CoursesView = ({ courses }: Props) => {
         <select
           value={sort}
           onChange={(e) => setSort(e.target.value)}
-          className="rounded-xl border border-zinc-800 bg-zinc-900 px-4 py-3"
+          className="rounded-xl border border-zinc-800 bg-zinc-900 pl-4 pr-10 py-3"
         >
           <option value="desc">Highest Progress</option>
           <option value="asc">Lowest Progress</option>
         </select>
       </div>
 
+      <div className="mb-6 flex gap-4">
+        <div className="rounded-xl bg-zinc-900 px-4 py-3">
+          Total Courses: {courses.length}
+        </div>
+
+        <div className="rounded-xl bg-zinc-900 px-4 py-3">
+          Completed: {courses.filter((course) => course.progress >= 100).length}
+        </div>
+      </div>
+
       <div className="grid gap-6 grid-6 md:grid-cols-2 xl:grid-cols-3">
-        {filteredCourses.map((course) => (
-          <CourseCard key={course.id} course={course} />
-        ))}
+        {filteredCourses.length === 0 ? (
+          <div className="flex h-60 items-center justify-center rounded-3xl border border-zinc-800 bg-zinc-900">
+            No courses found.
+          </div>
+        ) : (
+          filteredCourses.map((course) => (
+            <motion.div layout key={course.id}>
+              <CourseCard key={course.id} course={course} />
+            </motion.div>
+          ))
+        )}
       </div>
     </>
   );
