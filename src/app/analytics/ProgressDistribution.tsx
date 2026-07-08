@@ -2,6 +2,7 @@
 
 import { Course } from "@/types/course";
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from "recharts";
+import { motion } from "framer-motion";
 
 interface Props {
   courses: Course[];
@@ -35,14 +36,29 @@ const ProgressDistribution = ({ courses }: Props) => {
   const hasData = courses.length > 0;
 
   return (
-    <div className="rounded-3xl border border-zinc-800 bg-zinc-900 p-6">
+    <motion.div
+      initial={{
+        opacity: 0,
+        y: 20,
+      }}
+      animate={{
+        opacity: 1,
+        y: 0,
+      }}
+      className="rounded-3xl border border-zinc-800 bg-zinc-900 p-6"
+    >
       <h2 className="mb-4 text-xl font-bold">Progress Distribution</h2>
 
       {hasData ? (
         <div className="h-80">
           <ResponsiveContainer width="100%" height="100%">
             <PieChart>
-              <Pie data={data} dataKey="value" outerRadius={100} innerRadius={40}>
+              <Pie
+                data={data}
+                dataKey="value"
+                outerRadius={100}
+                innerRadius={40}
+              >
                 {data.map((_, index) => (
                   <Cell key={index} fill={colors[index]} />
                 ))}
@@ -52,9 +68,11 @@ const ProgressDistribution = ({ courses }: Props) => {
           </ResponsiveContainer>
         </div>
       ) : (
-        <p className="text-sm text-zinc-400">No course progress data available yet.</p>
+        <p className="text-sm text-zinc-400">
+          No course progress data available yet.
+        </p>
       )}
-    </div>
+    </motion.div>
   );
 };
 

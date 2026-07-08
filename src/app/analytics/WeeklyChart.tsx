@@ -10,6 +10,7 @@ import {
   Tooltip,
   ResponsiveContainer,
 } from "recharts";
+import { motion } from "framer-motion";
 
 interface Props {
   courses: Course[];
@@ -47,7 +48,17 @@ const WeeklyChart = ({ courses }: Props) => {
   const data = Object.values(progressByDay);
 
   return (
-    <div className="rounded-3xl border border-zinc-800 bg-zinc-900 p-6">
+    <motion.div
+      initial={{
+        opacity: 0,
+        y: 20,
+      }}
+      animate={{
+        opacity: 1,
+        y: 0,
+      }}
+      className="rounded-3xl border border-zinc-800 bg-zinc-900 p-6"
+    >
       <h2 className="mb-4 text-xl font-bold">Weekly Course Activity</h2>
 
       {courses.length > 0 ? (
@@ -76,7 +87,7 @@ const WeeklyChart = ({ courses }: Props) => {
           No weekly course activity to display yet.
         </p>
       )}
-    </div>
+    </motion.div>
   );
 };
 
