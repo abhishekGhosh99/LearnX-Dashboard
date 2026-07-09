@@ -16,10 +16,19 @@ const ActivityTile = () => {
 
       <div className="grid grid-cols-7 gap-2">
         {activity.map((level, index) => (
-          <div
-            className={`h-4 w-4 rounded-sm ${level === 0 ? "bg-zinc-800" : level === 1 ? "bg-cyan-500/30" : level === 2 ? "bg-cyan-500/60" : "bg-cyan-500"}`}
-            key={index}
-          />
+          <div className="flex items-center justify-center" key={index}>
+            <div
+              className={`h-4 w-4 rounded-sm ${
+                level === 0
+                  ? "bg-zinc-800"
+                  : level === 1
+                  ? "bg-cyan-500/30"
+                  : level === 2
+                  ? "bg-cyan-500/60"
+                  : "bg-cyan-500"
+              }`}
+            />
+          </div>
         ))}
       </div>
     </article>
