@@ -32,7 +32,7 @@ const Sidebar = () => {
   }
 
   return (
-    <aside className="hidden lg:flex flex-col p-6 border-r border-zinc-800 lg:sticky lg:top-0 lg:h-screen lg:min-h-0 lg:overflow-hidden">
+    <aside className="hidden lg:flex flex-col p-6 border-r border-zinc-800 lg:sticky lg:top-0 lg:h-screen lg:w-55 lg:min-h-0 lg:overflow-hidden">
       <h2 className="mb-8 text-xl font-bold">LearnX Dash</h2>
 
       <nav className="flex-1 min-h-0 overflow-y-auto space-y-2">
