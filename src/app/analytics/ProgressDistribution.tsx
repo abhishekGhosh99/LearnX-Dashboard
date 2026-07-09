@@ -63,7 +63,19 @@ const ProgressDistribution = ({ courses }: Props) => {
                   <Cell key={index} fill={colors[index]} />
                 ))}
               </Pie>
-              <Tooltip />
+              <Tooltip
+                contentStyle={{
+                  padding: 6,
+                  fontSize: 12,
+                  minWidth: 0,
+                  backgroundColor: "#0f1724",
+                  color: "#ffffff",
+                  border: "none",
+                  borderRadius: 6,
+                }}
+                itemStyle={{ padding: 0, color: "#ffffff" }}
+                labelStyle={{ color: "#9ca3af" }}
+              />
             </PieChart>
           </ResponsiveContainer>
         </div>

@@ -17,11 +17,16 @@ interface Props {
 }
 
 const WeeklyChart = ({ courses }: Props) => {
+  const formatIsoDate = (date: Date) =>
+    `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, "0")}-${String(
+      date.getDate(),
+    ).padStart(2, "0")}`;
+
   const today = new Date();
   const dayKeys = Array.from({ length: 7 }, (_, index) => {
     const date = new Date(today);
     date.setDate(today.getDate() - (6 - index));
-    const iso = date.toISOString().slice(0, 10);
+    const iso = formatIsoDate(date);
 
     return {
       label: date.toLocaleDateString("en-US", { weekday: "short" }),
@@ -39,7 +44,10 @@ const WeeklyChart = ({ courses }: Props) => {
   );
 
   courses.forEach((course) => {
-    const createdAt = new Date(course.created_at).toISOString().slice(0, 10);
+    const date = new Date(course.created_at);
+    if (Number.isNaN(date.getTime())) return;
+
+    const createdAt = formatIsoDate(date);
     if (progressByDay[createdAt]) {
       progressByDay[createdAt].count += 1;
     }
@@ -71,7 +79,19 @@ const WeeklyChart = ({ courses }: Props) => {
               <CartesianGrid strokeDasharray="3 3" stroke="#2a2a2a" />
               <XAxis dataKey="label" stroke="#9ca3af" />
               <YAxis stroke="#9ca3af" allowDecimals={false} />
-              <Tooltip />
+              <Tooltip
+                contentStyle={{
+                  padding: 6,
+                  fontSize: 12,
+                  minWidth: 0,
+                  backgroundColor: "#0f1724",
+                  color: "#ffffff",
+                  border: "none",
+                  borderRadius: 6,
+                }}
+                itemStyle={{ padding: 0, color: "#ffffff" }}
+                labelStyle={{ color: "#9ca3af" }}
+              />
               <Line
                 type="monotone"
                 dataKey="count"

@@ -44,7 +44,19 @@ const CompletionRate = ({ courses }: Props) => {
               endAngle={-180}
             >
               <RadialBar dataKey="value" cornerRadius={10} background />
-              <Tooltip />
+              <Tooltip
+                contentStyle={{
+                  padding: 6,
+                  fontSize: 12,
+                  minWidth: 0,
+                  backgroundColor: "#0f1724",
+                  color: "#ffffff",
+                  border: "none",
+                  borderRadius: 6,
+                }}
+                itemStyle={{ padding: 0, color: "#ffffff" }}
+                labelStyle={{ color: "#9ca3af" }}
+              />
             </RadialBarChart>
           </ResponsiveContainer>
         </div>
